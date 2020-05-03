@@ -1,0 +1,60 @@
+{
+  "name": "word-deck-editor",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "./",
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.12.37",
+    "@types/react": "^16.9.34",
+    "@types/react-dom": "^16.9.7",
+    "electron-is-dev": "^1.2.0",
+    "esm": "^3.2.25",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "sqlite3": "^4.2.0",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.7.5"
+  },
+  "scripts": {
+    "start": "concurrently \"yarn start:react\" \"wait-on http://localhost:3000 && yarn start:electron\" ",
+    "start:react": "cross-env BROWSER=none react-app-rewired start",
+    "start:electron": "electron .",
+    "test": "react-app-rewired test",
+    "postinstall": "electron-builder install-app-deps",
+    "build:react": "react-app-rewired build",
+    "build:electron": "electron-builder",
+    "build": "yarn build:react && yarn build:electron"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "build": {
+    "appId": "yourappid",
+    "win": {
+      "target": "NSIS",
+      "icon": "build/icon.ico"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "public"
+    }
+  },
+  "browserslist": "electron >= 8",
+  "devDependencies": {
+    "@types/sqlite3": "^3.1.6",
+    "concurrently": "^5.2.0",
+    "cross-env": "^7.0.2",
+    "electron": "^8.2.5",
+    "electron-builder": "^22.6.0",
+    "react-app-rewired": "^2.1.6",
+    "wait-on": "^4.0.2"
+  }
+}
